@@ -19,7 +19,7 @@ Gotta catch’em all…but fruit! is a game where players will catch fruits fall
 7. Each fruit will have different scores as well (e.g. Banana worth 3 points; watermelon worth 7 points, etc)
 
 # Features
-1.The random element of this game will be the frequency, speed, and the type of things that are dropping(different types of fruits and bombs).
+1. The random element of this game will be the frequency, speed, and the type of things that are dropping(different types of fruits and bombs).
 2. In this game, we will use a data structure to store the score of players and display the high score. We will also make a variety of fruits to catch, with each of them having different points. 
 3. The process of catching the fruits will involve dynamic memory management, as after the fruit is caught, it will be removed from the array.
 4. The input is the most recent player's score, and the output is the highest score once the game concludes.
