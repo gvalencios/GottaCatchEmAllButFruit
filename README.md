@@ -1,8 +1,8 @@
 # Gotta Catch’em All! But Fruit..!
 ## Team Members
-Georgy Valencio Siswanta UID: 3035898896
+:panda_face: Georgy Valencio Siswanta UID: 3035898896
 
-Dave Matthew UID: 3035898901
+:tiger: Dave Matthew UID: 3035898901
 
 ## Description
 Gotta Catch’em All…But Fruit! is a game where players will catch fruits falling from the legendary sky with their basket. However, fruit is not the only thing that will drop. Players must avoid every single bomb entering their basket, or else it will fully destroy the basket and it's game over. As time goes by, the speed of the falling fruit and the amount of the bomb will be increased. Each fruit has its own size and points, the bigger they are the more points you get! The player gets 3 lives at first and losing one fruit means losing 1 life while catching the bomb is a fatal mistake!
