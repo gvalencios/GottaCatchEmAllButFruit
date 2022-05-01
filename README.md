@@ -23,9 +23,9 @@ Gotta Catch’em All…But Fruit! is a game where players will catch fruits fall
 6. In all of the game source files, all functions and data structure has been properly written with correct indentation and naming style.
 7. In-code documentation will also be provided in the game file in a form of descriptive comments explaining the “what it does”, “what the inputs are”, and “what the outputs are” questions. 
 
-##Non-standard C/C++ Libraries Used
+## Non-standard C/C++ Libraries Used
 In the game, there are #include "play.h" which is the library/ header file that we created. Inside the "play.h" there are structs and functions declarations that are used to operate the game. 
 
-##Quick Start
+## Quick Start
 Run the makefile
 
