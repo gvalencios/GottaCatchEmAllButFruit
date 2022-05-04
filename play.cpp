@@ -79,7 +79,7 @@ void Basket::init(int MapY_length, int MapX_length)
 	// the Xpos of the basket is always in the middle of the map
     	Xpos = MapX_length/2;
 	// since the basket act as the player/ object that the player can move
-   	 // we intialize the Health and the score of the player inside the basket initialization function
+   	// we intialize the Health and the score of the player inside the basket initialization function
 	HP = 3;
 	Score = 0;
 }
@@ -119,19 +119,20 @@ bool Event::isRunning()
    	return !EndGame;
 }
 
-void Event::detectCatchedFruits(){
+void Event::detectCatchedFruits() {
 	// detect fruit if catched by the basket
     	for (int i = 0; i < 5; i++) { // the reason why i < 5 is because the basket size is 5
 		// if there is a '*' inside the basket then it means the fruits is catched successfully
     		if(Map[player.Ypos][ (player.Xpos + i) % MapSize_x ] == '*') {
 			// hence the player's score is increased
-    		player.Score++;
-    		break;
+    			player.Score++;
+    			break;
     		}
 	}
 }
 
-void Event::detectDroppedFruits(){
+void Event::detectDroppedFruits()
+{
 	// detect fruit if failed to be caught
 	for (int i = 0; i < (MapSize_x-5); i++) {
 	// the reason i < (MapSize_x-5) is because the basket size is 5, we only check all the pixel in the map outside the basket
