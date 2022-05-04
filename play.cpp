@@ -40,7 +40,7 @@ void Fruit::Move()
  	// increment the Ypos in order to make the fruits "fall"
 	Ypos += 1;
 	// Xpos doesn't change as we don't alter the horizontal position of the furits
-    Xpos += 0;
+    	Xpos += 0;
 }
 
 void Fruit::init(int MapY_length,int MapX_length)
@@ -48,9 +48,9 @@ void Fruit::init(int MapY_length,int MapX_length)
 	// always intialize fruits from Ypos = 0 which is the top most row
 	Ypos = 0;
 	// randomize the Xpos of the fruits
-    Xpos = rand() % MapX_length;
+    	Xpos = rand() % MapX_length;
 	// the size of the fruits is always 1
-    Size = 1;
+    	Size = 1;
 }
 
 // detect Keypressing and change the player's coordinate
@@ -75,11 +75,11 @@ void Basket::Move(int MapY_length, int MapX_length)
 void Basket::init(int MapY_length, int MapX_length)
 {
 	// the Ypos of the basket is always in the bottom most row
-    Ypos = MapY_length-1;
+    	Ypos = MapY_length-1;
 	// the Xpos of the basket is always in the middle of the map
-    Xpos = MapX_length/2;
+    	Xpos = MapX_length/2;
 	// since the basket act as the player/ object that the player can move
-    // we intialize the Health and the score of the player inside the basket initialization function
+   	 // we intialize the Health and the score of the player inside the basket initialization function
 	HP = 3;
 	Score = 0;
 }
@@ -87,16 +87,16 @@ void Basket::init(int MapY_length, int MapX_length)
 void Event::initMap()
 {
 	// initialize the map size
-    MapSize_y = 15;
-    MapSize_x = 22;
+   	MapSize_y = 15;
+    	MapSize_x = 22;
 }
 
 void Event::initVariables()
 {
 	// intialize variables that is needed
-    EndGame = false;
-    player.init(MapSize_y, MapSize_x);
-    fruities.clear();
+    	EndGame = false;
+    	player.init(MapSize_y, MapSize_x);
+    	fruities.clear();
 	intervalDrop = 12;
 }
 
@@ -110,24 +110,24 @@ void Event::startingNewGame()
 	printScoreboard();
 	// initialize the map and other important variables
 	initMap();
-    initVariables();
+   	initVariables();
 }
 
 bool Event::isRunning()
 {
 	// this is a function to detect wether it is game over or not
-    return !EndGame;
+   	return !EndGame;
 }
 
 void Event::detectCatchedFruits(){
 	// detect fruit if catched by the basket
-    for (int i = 0; i < 5; i++) { // the reason why i < 5 is because the basket size is 5
+    	for (int i = 0; i < 5; i++) { // the reason why i < 5 is because the basket size is 5
 		// if there is a '*' inside the basket then it means the fruits is catched successfully
-    	if(Map[player.Ypos][ (player.Xpos + i) % MapSize_x ] == '*') {
+    		if(Map[player.Ypos][ (player.Xpos + i) % MapSize_x ] == '*') {
 			// hence the player's score is increased
     		player.Score++;
     		break;
-    	}
+    		}
 	}
 }
 
@@ -136,29 +136,27 @@ void Event::detectDroppedFruits(){
 	for (int i = 0; i < (MapSize_x-5); i++) {
 	// the reason i < (MapSize_x-5) is because the basket size is 5, we only check all the pixel in the map outside the basket
 		// if there is a '*' in the last line outside the basket then it means the fruits has dropped to the ground
-    	if( Map[player.Ypos][ (player.Xpos + 5 + i) % MapSize_x ] == '*') {
+    		if( Map[player.Ypos][ (player.Xpos + 5 + i) % MapSize_x ] == '*') {
 			// hence the player health is deducted
-    		player.HP--;
+    			player.HP--;
 			// if the health is smaller than 0 then it is game over
-    		if(player.HP <= 0) {
+    			if(player.HP <= 0) {
 				// therefore the endgame variable become true
 				EndGame = true;
 				break;
 			}
-    	}
+    		}
 	}
 }
 
 void Event::refreshMap()
 {
-    //reseting the map  
-    for(int i = 0; i < MapSize_y; i++)
-    {
-        for(int j = 0; j < MapSize_x; j++)
-        {
-            Map[i][j]='.';
-        }
-    }
+	//reseting the map  
+	for(int i = 0; i < MapSize_y; i++) {
+        	for(int j = 0; j < MapSize_x; j++) {
+           		Map[i][j]='.';
+        	}
+    	}
 
     // updating the positions of all fruities in the map
     for(unsigned int i = 0; i < fruities.size(); i++)
