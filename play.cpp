@@ -35,3 +35,20 @@ int kbhit()
 	return 0;
 }
 
+void Fruit::Move()
+{
+	// increment the Ypos in order to make the fruits "fall"
+    Ypos += 1;
+	// Xpos doesn't change as we don't alter the horizontal position of the furits
+    Xpos += 0;
+}
+
+void Fruit::init(int MapY_length,int MapX_length)
+{
+	// always intialize fruits from Ypos = 0 which is the top most row
+    Ypos = 0;
+	// randomize the Xpos of the fruits
+    Xpos = rand() % MapX_length;
+	// the size of the fruits is always 1
+    Size = 1;
+}
