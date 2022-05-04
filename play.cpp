@@ -71,3 +71,44 @@ void Basket::Move(int MapY_length, int MapX_length)
 		}
 	}   
 }
+
+void Basket::init(int MapY_length, int MapX_length)
+{
+	// the Ypos of the basket is always in the bottom most row
+    Ypos = MapY_length-1;
+	// the Xpos of the basket is always in the middle of the map
+    Xpos = MapX_length/2;
+	// since the basket act as the player/ object that the player can move
+    // we intialize the Health and the score of the player inside the basket initialization function
+	HP = 3;
+	Score = 0;
+}
+
+void Event::initMap()
+{
+	// initialize the map size
+    MapSize_y = 15;
+    MapSize_x = 22;
+}
+
+void Event::initVariables()
+{
+	// intialize variables that is needed
+    EndGame = false;
+    player.init(MapSize_y, MapSize_x);
+    fruities.clear();
+	intervalDrop = 12;
+}
+
+void Event::startingNewGame()
+{
+	// print the instructions of the game
+	instructions();
+	// store the last player score
+	storeScoreboard();
+	// print the score board
+	printScoreboard();
+	// initialize the map and other important variables
+	initMap();
+    initVariables();
+}
