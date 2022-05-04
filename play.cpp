@@ -122,9 +122,11 @@ bool Event::isRunning()
 void Event::detectCatchedFruits() 
 {
 	// detect fruit if catched by the basket
-    	for (int i = 0; i < 5; i++) { // the reason why i < 5 is because the basket size is 5
+    	for (int i = 0; i < 5; i++) 
+	{ // the reason why i < 5 is because the basket size is 5
 		// if there is a '*' inside the basket then it means the fruits is catched successfully
-    		if(Map[player.Ypos][ (player.Xpos + i) % MapSize_x ] == '*') {
+    		if(Map[player.Ypos][ (player.Xpos + i) % MapSize_x ] == '*') 
+		{
 			// hence the player's score is increased
     			player.Score++;
     			break;
@@ -135,14 +137,16 @@ void Event::detectCatchedFruits()
 void Event::detectDroppedFruits()
 {
 	// detect fruit if failed to be caught
-	for (int i = 0; i < (MapSize_x-5); i++) {
-	// the reason i < (MapSize_x-5) is because the basket size is 5, we only check all the pixel in the map outside the basket
+	for (int i = 0; i < (MapSize_x-5); i++) 
+	{ // the reason i < (MapSize_x-5) is because the basket size is 5, we only check all the pixel in the map outside the basket
 		// if there is a '*' in the last line outside the basket then it means the fruits has dropped to the ground
-    		if( Map[player.Ypos][ (player.Xpos + 5 + i) % MapSize_x ] == '*') {
+    		if( Map[player.Ypos][ (player.Xpos + 5 + i) % MapSize_x ] == '*') 
+		{
 			// hence the player health is deducted
     			player.HP--;
 			// if the health is smaller than 0 then it is game over
-    			if(player.HP <= 0) {
+    			if(player.HP <= 0) 
+			{
 				// therefore the endgame variable become true
 				EndGame = true;
 				break;
@@ -181,14 +185,16 @@ void Event::refreshMap()
 	detectDroppedFruits();
 
     	// updating the position of the player
-    	for (int i = 0; i < 5; i++) { // again i < 5 is because the basket size is 5
+    	for (int i = 0; i < 5; i++) 
+	{ // again i < 5 is because the basket size is 5
 		// case 1: over the left & right boundaries
 		// when the x position of the basket which named player is below 0
 		// adding MapSize_x will bring the basket back to the right most part of the map
 		if ( player.Xpos < 0 ) player.Xpos += MapSize_x;
 		// when the x position of the basket + 5 of its size is larger than the MapSize_x
 		// taking the modulus of player.Xpos with the MapSize_x will bring the basket back to the left most part of the map
-		if ( (player.Xpos + 5) > MapSize_x ) {
+		if ( (player.Xpos + 5) > MapSize_x ) 
+		{
 			Map[player.Ypos][ (player.Xpos + i) % MapSize_x ] = '_';
 		}
 		// case 2: inside the boundaries
@@ -216,11 +222,13 @@ void Event::refreshFruitStatus()
 	}
 
 	// summoning a fruit with some interval, and increase the probability of dropping by score 
-	if ( (player.Score % 3 == 0) && (player.Score != 0) && (player.Score != tmp) && (intervalDrop > 5) ) {
+	if ( (player.Score % 3 == 0) && (player.Score != 0) && (player.Score != tmp) && (intervalDrop > 5) ) 
+	{
 		intervalDrop -= 1; // interval starting from 15 to 14 to 13 .. 5 (every score of 3)
 		tmp = player.Score;
 	}
-	if( count % intervalDrop == 0 ) {	
+	if( count % intervalDrop == 0 ) 
+	{	
 		Fruit dropFruits;
 		dropFruits.init(MapSize_y, MapSize_x);
 		fruities.push_back(dropFruits);
@@ -264,7 +272,8 @@ void Event::printScoreboard()
 	ifstream fin ("Scoreboard.txt");
 	
 	// error handling
-	if ( fin.fail() ) {
+	if ( fin.fail() ) 
+	{
       		cout << "Error in file opening!" << endl;
       		exit(1);
    	}
@@ -272,13 +281,16 @@ void Event::printScoreboard()
 	int cur_score;
 	int i=1;
 	while ( fin >> cur_score ) {
-		if (i == 1){
+		if (i == 1)
+		{
 			cout << "| Highest score        : " << cur_score << endl;
 		}
-		if (i == 2){
+		if (i == 2)
+		{
 			cout << "| Second highest score : " << cur_score << endl;
 		}
-		if (i == 3){
+		if (i == 3)
+		{
 			cout << "| Third highest score  : " << cur_score << endl;
 			break;
 		}
@@ -292,15 +304,18 @@ void Event::printScoreboard()
 void Event::storeScoreboard()	// input to scoreboard txt file
 {
 	//to reset scoreboard
-	if ( (ch.back() == 'r') || (ch.back() == 'R') ) {
+	if ( (ch.back() == 'r') || (ch.back() == 'R') ) 
+	{
 		ofstream fout("Scoreboard.txt");
 		// error handling
-		if ( fout.fail() ) {
+		if ( fout.fail() ) 
+		{
 			cout << "Error in file opening!" << endl;
 			exit(1);
 		}
 		//fout << endl;
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < 3; i++) 
+		{
 			fout << 0 << endl;
 		}
 		fout.close();
@@ -310,7 +325,8 @@ void Event::storeScoreboard()	// input to scoreboard txt file
 	ifstream fin ("Scoreboard.txt");
 	
 	// error handling
-	if ( fin.fail() ) {
+	if ( fin.fail() ) 
+	{
       		cout << "Error in file opening!" << endl;
       		exit(1);
    	}
@@ -341,13 +357,15 @@ void Event::storeScoreboard()	// input to scoreboard txt file
 	ofstream fout("Scoreboard.txt");
 	
 	// error handling
-	if ( fout.fail() ) {
+	if ( fout.fail() ) 
+	{
       		cout << "Error in file opening!" << endl;
       		exit(1);
    	}
    
 	// iterate vector and add lines
-	for (int i = 0; i < 4; i++) {
+	for (int i = 0; i < 4; i++) 
+	{
 		fout << scores[i] << endl;
 	}
 		
