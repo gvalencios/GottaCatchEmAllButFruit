@@ -251,3 +251,114 @@ void Event::print()
     printUI();
     printMap();
 }
+
+void Event::printScoreboard()
+{
+	// output from the scoreboard txt file
+	ifstream fin ("Scoreboard.txt");
+	
+	// error handling
+	if ( fin.fail() ) {
+      cout << "Error in file opening!" << endl;
+      exit(1);
+   	}
+   
+	int cur_score;
+	int i=1;
+	while ( fin >> cur_score ) {
+		if (i == 1){
+			cout << "| Highest score        : " << cur_score << endl;
+		}
+		if (i == 2){
+			cout << "| Second highest score : " << cur_score << endl;
+		}
+		if (i == 3){
+			cout << "| Third highest score  : " << cur_score << endl;
+			break;
+		}
+		i++;
+ 	}
+	
+   fin.close();
+	
+}
+
+void Event::storeScoreboard()	// input to scoreboard txt file
+{
+	//to reset scoreboard
+	if ( (ch.back() == 'r') || (ch.back() == 'R') ) {
+		ofstream fout("Scoreboard.txt");
+		// error handling
+		if ( fout.fail() ) {
+		cout << "Error in file opening!" << endl;
+		exit(1);
+		}
+		//fout << endl;
+		for (int i = 0; i < 3; i++) {
+			fout << 0 << endl;
+		}
+		fout.close();
+	}
+
+	// open the file to get the list of scores in the scoreboard
+	ifstream fin ("Scoreboard.txt");
+	
+	// error handling
+	if ( fin.fail() ) {
+      cout << "Error in file opening!" << endl;
+      exit(1);
+   	}
+   
+	// copy them into a vector 
+	int score;
+	vector<int> scores;
+	int cur_score = player.Score; // new score that want to be added in the scoreboard
+	 
+	if (fin.is_open())
+	{
+	    //read lines and push into vector
+		while (fin >> score)
+	    {
+	        scores.push_back(score);
+	    }
+	}
+	
+	fin.close();
+	
+	// insert the new score
+	scores.push_back(cur_score);
+	
+	// sort them decreasingly
+	sort(scores.rbegin(), scores.rend());
+	
+	// open file for writing
+	ofstream fout("Scoreboard.txt");
+	
+	// error handling
+	if ( fout.fail() ) {
+      cout << "Error in file opening!" << endl;
+      exit(1);
+   	}
+   
+	// iterate vector and add lines
+	for (int i = 0; i < 4; i++) {
+	    fout << scores[i] << endl;
+	}
+		
+	fout.close();
+}
+
+void Event::instructions() 
+{
+	cout << "WELCOME TO ~ GOTTA CATCH'EM ALL, BUT FRUITS!" << endl;
+	cout << '+' << setw(43) << setfill('+') << '+' << endl;
+	cout << setfill(' ') << "+ Instructions! " << setw(28) << '+' << endl
+         << "+ " << "To move LEFT   : Press 'A' " << setw(15) << '+' << endl
+         << "+ " << "To move RIGHT  : Press 'D' " << setw(15) << '+' << endl
+         << "+ " << "To move FASTER : Press 'N' (left) " << setw(8) << '+' << endl
+		 << "+ " << "                 Press 'M' (right) " << setw(7) << '+' << endl
+		 << "+ " << "To RESET score : Press 'R' key " << setw(11) << '+' << endl
+		 << "+ " << "To EXIT game   : Press 'Q' key " << setw(11) << '+' << endl
+		 << "+ " << "To PLAY game   : Press any key " << setw(11) << '+' << endl;
+    cout << '+' << setw(43) << setfill('+') << '+' << endl;
+}
