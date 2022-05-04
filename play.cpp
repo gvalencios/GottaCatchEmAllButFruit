@@ -119,7 +119,8 @@ bool Event::isRunning()
    	return !EndGame;
 }
 
-void Event::detectCatchedFruits() {
+void Event::detectCatchedFruits() 
+{
 	// detect fruit if catched by the basket
     	for (int i = 0; i < 5; i++) { // the reason why i < 5 is because the basket size is 5
 		// if there is a '*' inside the basket then it means the fruits is catched successfully
@@ -167,8 +168,12 @@ void Event::refreshMap()
 		int sz = fruities[i].Size;
 
 		for(int j = 0; fruities[i].Ypos + j < MapSize_y && j < sz; j++)
-		    for(int k = 0; fruities[i].Xpos + k < MapSize_x && k < sz; k++)
-			Map[fruities[i].Ypos + j][fruities[i].Xpos + k] = '*';
+		{
+			for(int k = 0; fruities[i].Xpos + k < MapSize_x && k < sz; k++)
+			{	
+				Map[fruities[i].Ypos + j][fruities[i].Xpos + k] = '*';
+			}
+		}	
 	}
 
 	detectCatchedFruits();
@@ -207,18 +212,18 @@ void Event::refreshFruitStatus()
 		if(fruities[i].Ypos >= MapSize_y)
 			// delete the fruit when the Ypos is larger than the MapSize_y which means already in the very bottom
 			fruities.erase(fruities.begin() + i);
-			else i++;
+		else i++;
 		}
 
-		// summoning a fruit with some interval, and increase the probability of dropping by score 
-		if ( (player.Score % 3 == 0) && (player.Score != 0) && (player.Score != tmp) && (intervalDrop > 5) ) {
-			intervalDrop -= 1; // interval starting from 15 to 14 to 13 .. 5 (every score of 3)
-			tmp = player.Score;
-		}
-		if( count % intervalDrop == 0 ) {	
-			Fruit dropFruits;
-			dropFruits.init(MapSize_y, MapSize_x);
-			fruities.push_back(dropFruits);
+	// summoning a fruit with some interval, and increase the probability of dropping by score 
+	if ( (player.Score % 3 == 0) && (player.Score != 0) && (player.Score != tmp) && (intervalDrop > 5) ) {
+		intervalDrop -= 1; // interval starting from 15 to 14 to 13 .. 5 (every score of 3)
+		tmp = player.Score;
+	}
+	if( count % intervalDrop == 0 ) {	
+		Fruit dropFruits;
+		dropFruits.init(MapSize_y, MapSize_x);
+		fruities.push_back(dropFruits);
 	}
 	count++;
 }
@@ -243,7 +248,7 @@ void Event::printMap()
         	{
         		cout << Map[i][j];
         	}
-        cout << "\n";
+        	cout << "\n";
     	}
 }
 
