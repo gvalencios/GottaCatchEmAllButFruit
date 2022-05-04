@@ -152,29 +152,31 @@ void Event::detectDroppedFruits()
 
 void Event::refreshMap()
 {
-	//reseting the map  
-	for(int i = 0; i < MapSize_y; i++) {
-        	for(int j = 0; j < MapSize_x; j++) {
-           		Map[i][j]='.';
+    	//reseting the map  
+    	for(int i = 0; i < MapSize_y; i++)
+    	{
+        	for(int j = 0; j < MapSize_x; j++)
+        	{
+            		Map[i][j]='.';
         	}
     	}
 
-    // updating the positions of all fruities in the map
-    for(unsigned int i = 0; i < fruities.size(); i++)
-    {
-        int sz = fruities[i].Size;
+	// updating the positions of all fruities in the map
+	for(unsigned int i = 0; i < fruities.size(); i++)
+	{
+		int sz = fruities[i].Size;
 
-        for(int j = 0; fruities[i].Ypos + j < MapSize_y && j < sz; j++)
-            for(int k = 0; fruities[i].Xpos + k < MapSize_x && k < sz; k++)
-                Map[fruities[i].Ypos + j][fruities[i].Xpos + k] = '*';
-    }
+		for(int j = 0; fruities[i].Ypos + j < MapSize_y && j < sz; j++)
+		    for(int k = 0; fruities[i].Xpos + k < MapSize_x && k < sz; k++)
+			Map[fruities[i].Ypos + j][fruities[i].Xpos + k] = '*';
+	}
 
-    detectCatchedFruits();
-    
-    detectDroppedFruits();
-		
-    // updating the position of the player
-    for (int i = 0; i < 5; i++) { // again i < 5 is because the basket size is 5
+	detectCatchedFruits();
+
+	detectDroppedFruits();
+
+    	// updating the position of the player
+    	for (int i = 0; i < 5; i++) { // again i < 5 is because the basket size is 5
 		// case 1: over the left & right boundaries
 		// when the x position of the basket which named player is below 0
 		// adding MapSize_x will bring the basket back to the right most part of the map
@@ -191,32 +193,32 @@ void Event::refreshMap()
 
 void Event::refreshPlayerStatus()
 {
-    player.Move(MapSize_y, MapSize_x);
+	player.Move(MapSize_y, MapSize_x);
 }
 
 void Event::refreshFruitStatus()
 {
-    // moving all the current Fruit
-    for(unsigned int i = 0; i < fruities.size();)
-    {
-        fruities[i].Move();
+	// moving all the current Fruit
+	for(unsigned int i = 0; i < fruities.size();)
+    	{
+		fruities[i].Move();
 
-        // check if the fruit is outside the map
-        if(fruities[i].Ypos >= MapSize_y)
+		// check if the fruit is outside the map
+		if(fruities[i].Ypos >= MapSize_y)
 			// delete the fruit when the Ypos is larger than the MapSize_y which means already in the very bottom
-            fruities.erase(fruities.begin() + i);
-        else i++;
-    }
+			fruities.erase(fruities.begin() + i);
+			else i++;
+		}
 
-	// summoning a fruit with some interval, and increase the probability of dropping by score 
-	if ( (player.Score % 3 == 0) && (player.Score != 0) && (player.Score != tmp) && (intervalDrop > 5) ) {
-		intervalDrop -= 1; // interval starting from 15 to 14 to 13 .. 5 (every score of 3)
-		tmp = player.Score;
-	}
-	if( count % intervalDrop == 0 ) {	
-		Fruit dropFruits;
-		dropFruits.init(MapSize_y, MapSize_x);
-		fruities.push_back(dropFruits);
+		// summoning a fruit with some interval, and increase the probability of dropping by score 
+		if ( (player.Score % 3 == 0) && (player.Score != 0) && (player.Score != tmp) && (intervalDrop > 5) ) {
+			intervalDrop -= 1; // interval starting from 15 to 14 to 13 .. 5 (every score of 3)
+			tmp = player.Score;
+		}
+		if( count % intervalDrop == 0 ) {	
+			Fruit dropFruits;
+			dropFruits.init(MapSize_y, MapSize_x);
+			fruities.push_back(dropFruits);
 	}
 	count++;
 }
@@ -225,30 +227,30 @@ void Event::update()
 {
 	refreshPlayerStatus();
 	refreshFruitStatus();
-    refreshMap();
+	refreshMap();
 }
 
 void Event::printUI()
 {
-    cout << "Health: " << player.HP << " | " << "Score: " << player.Score << "\n";
+	cout << "Health: " << player.HP << " | " << "Score: " << player.Score << "\n";
 }
 
 void Event::printMap()
 {
-    for(int i = 0; i < MapSize_y; i++)
-    {
-        for(int j = 0; j < MapSize_x; j++)
-        {
-        	cout << Map[i][j];
-        }
+	for(int i = 0; i < MapSize_y; i++)
+    	{
+		for(int j = 0; j < MapSize_x; j++)
+        	{
+        		cout << Map[i][j];
+        	}
         cout << "\n";
-    }
+    	}
 }
 
 void Event::print()
 {
-    printUI();
-    printMap();
+ 	printUI();
+ 	printMap();
 }
 
 void Event::printScoreboard()
@@ -258,8 +260,8 @@ void Event::printScoreboard()
 	
 	// error handling
 	if ( fin.fail() ) {
-      cout << "Error in file opening!" << endl;
-      exit(1);
+      		cout << "Error in file opening!" << endl;
+      		exit(1);
    	}
    
 	int cur_score;
@@ -278,7 +280,7 @@ void Event::printScoreboard()
 		i++;
  	}
 	
-   fin.close();
+	fin.close();
 	
 }
 
@@ -289,8 +291,8 @@ void Event::storeScoreboard()	// input to scoreboard txt file
 		ofstream fout("Scoreboard.txt");
 		// error handling
 		if ( fout.fail() ) {
-		cout << "Error in file opening!" << endl;
-		exit(1);
+			cout << "Error in file opening!" << endl;
+			exit(1);
 		}
 		//fout << endl;
 		for (int i = 0; i < 3; i++) {
@@ -304,8 +306,8 @@ void Event::storeScoreboard()	// input to scoreboard txt file
 	
 	// error handling
 	if ( fin.fail() ) {
-      cout << "Error in file opening!" << endl;
-      exit(1);
+      		cout << "Error in file opening!" << endl;
+      		exit(1);
    	}
    
 	// copy them into a vector 
@@ -315,11 +317,11 @@ void Event::storeScoreboard()	// input to scoreboard txt file
 	 
 	if (fin.is_open())
 	{
-	    //read lines and push into vector
+	    	//read lines and push into vector
 		while (fin >> score)
-	    {
-	        scores.push_back(score);
-	    }
+	    	{
+	        	scores.push_back(score);
+	    	}
 	}
 	
 	fin.close();
@@ -335,13 +337,13 @@ void Event::storeScoreboard()	// input to scoreboard txt file
 	
 	// error handling
 	if ( fout.fail() ) {
-      cout << "Error in file opening!" << endl;
-      exit(1);
+      		cout << "Error in file opening!" << endl;
+      		exit(1);
    	}
    
 	// iterate vector and add lines
 	for (int i = 0; i < 4; i++) {
-	    fout << scores[i] << endl;
+		fout << scores[i] << endl;
 	}
 		
 	fout.close();
@@ -352,12 +354,12 @@ void Event::instructions()
 	cout << "WELCOME TO ~ GOTTA CATCH'EM ALL, BUT FRUITS!" << endl;
 	cout << '+' << setw(43) << setfill('+') << '+' << endl;
 	cout << setfill(' ') << "+ Instructions! " << setw(28) << '+' << endl
-         << "+ " << "To move LEFT   : Press 'A' " << setw(15) << '+' << endl
-         << "+ " << "To move RIGHT  : Press 'D' " << setw(15) << '+' << endl
-         << "+ " << "To move FASTER : Press 'N' (left) " << setw(8) << '+' << endl
-		 << "+ " << "                 Press 'M' (right) " << setw(7) << '+' << endl
-		 << "+ " << "To RESET score : Press 'R' key " << setw(11) << '+' << endl
-		 << "+ " << "To EXIT game   : Press 'Q' key " << setw(11) << '+' << endl
-		 << "+ " << "To PLAY game   : Press any key " << setw(11) << '+' << endl;
-    cout << '+' << setw(43) << setfill('+') << '+' << endl;
+		<< "+ " << "To move LEFT   : Press 'A' " << setw(15) << '+' << endl
+        	<< "+ " << "To move RIGHT  : Press 'D' " << setw(15) << '+' << endl
+         	<< "+ " << "To move FASTER : Press 'N' (left) " << setw(8) << '+' << endl
+		<< "+ " << "                 Press 'M' (right) " << setw(7) << '+' << endl
+		<< "+ " << "To RESET score : Press 'R' key " << setw(11) << '+' << endl
+		<< "+ " << "To EXIT game   : Press 'Q' key " << setw(11) << '+' << endl
+		<< "+ " << "To PLAY game   : Press any key " << setw(11) << '+' << endl;
+    	cout << '+' << setw(43) << setfill('+') << '+' << endl;
 }
