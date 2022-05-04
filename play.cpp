@@ -213,7 +213,7 @@ void Event::refreshFruitStatus()
 			// delete the fruit when the Ypos is larger than the MapSize_y which means already in the very bottom
 			fruities.erase(fruities.begin() + i);
 		else i++;
-		}
+	}
 
 	// summoning a fruit with some interval, and increase the probability of dropping by score 
 	if ( (player.Score % 3 == 0) && (player.Score != 0) && (player.Score != tmp) && (intervalDrop > 5) ) {
