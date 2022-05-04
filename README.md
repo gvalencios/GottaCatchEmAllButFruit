@@ -5,14 +5,15 @@
 :tiger: Dave Matthew UID: 3035898901
 
 ## Description
-Gotta Catch’em All…But Fruit! is a game where players will catch fruits falling from the legendary sky with their basket. Fruits will drop randomly with a certain velocity. However, as the score increases, the speed of the falling fruit will be increased. The player gets 3 lives at first and losing one fruit means losing 1 life. Beat the current highscore to show who's the best in this game!
+Gotta Catch’em All…But Fruit! is a game where players will catch fruits falling from the legendary sky with their basket. Fruits will drop randomly with a certain velocity. However, as the score increases, the frequency and speed of the falling fruit will be increased. The player gets 3 lives at first and losing one fruit means losing 1 life. Beat the current highscore to show who's the best in this game!
 
 ## Game Rules
-1. Players will move the basket using their keyboard’s arrow key or 'A' and 'D' key.
-2. Players must try to fit the fruits into their basket.
-3. Losing 1 fruit means losing 1 life out of 3 lives given at the beginning of the game.
-4. Catching 1 fruit means earning 1 points which then will be uploaded into the scoreboard.
-5. The longer you play, the faster the fruit gets, making it more challenging to catch the fruits.
+1. Players will move the basket using their 'A' and 'D' key.
+2. PLayers can move the basket even faster using the 'N' and 'M' key.
+3. Players must try to fit the fruits into their basket.
+4. Losing 1 fruit means losing 1 life out of 3 lives given at the beginning of the game.
+5. Catching 1 fruit means earning 1 points which then will be uploaded into the scoreboard.
+6. The longer you play, the faster the fruit gets, making it more challenging to catch the fruits.
 
 ## Features
 1. The random element of this game will be the frequency, speed, and location where the fruits will be generated.
